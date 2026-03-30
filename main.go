@@ -49,6 +49,23 @@ func joinWithPunctuation(tokens []string) string {
 	return strings.ReplaceAll(strings.Join(tokens, ""), ",", ", ")
 }
 
+///OR
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println(joinwithpunc("hello", "world"))
+}
+
+func joinwithpunc(a, b string) string {
+	return a + ", " + b + "!"
+}
+
+
 // 6
 func isPunctuation(s string) bool {
 	return strings.Contains(",!", s)
@@ -82,6 +99,39 @@ func fixArticles(text string) string {
 	}
 	return strings.Join(words, " ")
 }
+
+
+	////OR
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	fmt.Println("there it was. A amazing rock. A honest man. An Book")
+}
+
+func fixarticles(text string) string {
+	words := strings.Fields(text)
+
+	for i := 0; i < len(words)-1; i++ {
+		firstletter := words[i+1][:1]
+
+		if words[i] == "An" && !strings.containsAny(firstletter, "aeiouAEIOUHh") {
+			words[i] = "A"
+		}
+
+		if words[i] == "A" && strings.containsAny(firstletter, "aeiouAEIOUHh") {
+			words[i] = "An"
+
+		}
+
+	}
+	return strings.Join(words, " ")
+}
+
 
 // 9
 func fixSingleQuotes(text string) string {
